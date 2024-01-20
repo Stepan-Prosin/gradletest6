@@ -15,9 +15,9 @@ public class DevCardTest {
 
     @Test
     void cardDevTest() {
-DataGenerator.UserInfo validUser=DataGenerator.Registration.generateUser("ru");
-int daysToAddforFirstmeating =3;
-        String firstMeetingDay= DataGenerator.generateDate(daysToAddforFirstmeating);
+        DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
+        int daysToAddforFirstmeating = 3;
+        String firstMeetingDay = DataGenerator.generateDate(daysToAddforFirstmeating);
         int daysToAddforSecondmeating = 7;
         String secondMeetingDay = DataGenerator.generateDate(daysToAddforSecondmeating);
         open("http://localhost:9999");
@@ -33,16 +33,16 @@ int daysToAddforFirstmeating =3;
         $("[data-test-id='success-notification'] .notification__content")
                 .shouldHave(Condition.exactText("Встреча успешно запланирована на " + firstMeetingDay))
                 .shouldBe(visible);
-            $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-            $("[data-test-id='date'] input").setValue(secondMeetingDay);
-            $(byText("Запланировать")).click();
-            $("[data-test-id='replan-notification'] .notification__content")
-                    .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"))
-                    .shouldBe(visible);
-            $("[data-test-id='replan-notification'] button").click();
-            $("[data-test-id='success-notification'] .notification__content")
-                    .shouldHave(Condition.exactText("Встреча успешно запланирована на " + secondMeetingDay))
-                    .shouldBe(visible);
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
+        $("[data-test-id='date'] input").setValue(secondMeetingDay);
+        $(byText("Запланировать")).click();
+        $("[data-test-id='replan-notification'] .notification__content")
+                .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"))
+                .shouldBe(visible);
+        $("[data-test-id='replan-notification'] button").click();
+        $("[data-test-id='success-notification'] .notification__content")
+                .shouldHave(Condition.exactText("Встреча успешно запланирована на " + secondMeetingDay))
+                .shouldBe(visible);
 
 
     }

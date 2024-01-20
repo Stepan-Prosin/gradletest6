@@ -12,20 +12,20 @@ public class DataGenerator {
     }
 
     public static String generateDate(int shift) {
-        return  LocalDate.now().plusDays(shift).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        return LocalDate.now().plusDays(shift).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public static String generateCity(String locale) {
         // TODO: добавить логику для объявления переменной city и задания её значения, генерацию можно выполнить
-        var  city= new String[]{"Москва","Майкоп", "Горно-Алтайск", "Уфа", "Улан-Удэ", "Махачкала", "Магас",
-                "Нальчик", "Элиста", "Ростов-на-Дону", "Ярославль", "Санкт-Петербург", "Черкесск" ,"Петрозаводск",
+        var city = new String[]{"Москва", "Майкоп", "Горно-Алтайск", "Уфа", "Улан-Удэ", "Махачкала", "Магас",
+                "Нальчик", "Элиста", "Ростов-на-Дону", "Ярославль", "Санкт-Петербург", "Черкесск", "Петрозаводск",
                 "Псков"};
         return city[new Random().nextInt(city.length)];
     }
 
     public static String generateName(String locale) {
-       var faker = new Faker(new Locale(locale));
-       return faker.name().lastName() + " " + faker.name().firstName();
+        var faker = new Faker(new Locale(locale));
+        return faker.name().lastName() + " " + faker.name().firstName();
 
     }
 
@@ -44,7 +44,7 @@ public class DataGenerator {
             // TODO: добавить логику для создания пользователя user с использованием методов generateCity(locale),
             // generateName(locale), generatePhone(locale)
 
-            return new UserInfo(generateCity(locale),generateName(locale),generatePhone(locale));
+            return new UserInfo(generateCity(locale), generateName(locale), generatePhone(locale));
 
         }
     }
@@ -52,6 +52,8 @@ public class DataGenerator {
     @Value
     public static class UserInfo {
         String city;
+        String name;
+        String phone;
 
         @Override
         public boolean equals(Object o) {
@@ -65,9 +67,6 @@ public class DataGenerator {
         public int hashCode() {
             return Objects.hash(city, name, phone);
         }
-
-        String name;
-        String phone;
 
     }
 
