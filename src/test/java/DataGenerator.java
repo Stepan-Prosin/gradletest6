@@ -4,7 +4,6 @@ import lombok.Value;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Random;
 
 public class DataGenerator {
@@ -55,18 +54,7 @@ public class DataGenerator {
         String name;
         String phone;
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            UserInfo userInfo = (UserInfo) o;
-            return Objects.equals(city, userInfo.city) && Objects.equals(name, userInfo.name) && Objects.equals(phone, userInfo.phone);
-        }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(city, name, phone);
-        }
 
     }
 
